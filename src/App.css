@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: #1C213E;
+    font-family: 'Saira Condensed Medium';
+    color: '#fff';
+    font-size: 16px;
+}
+
+h3{
+    font-size: 1.8rem;
+    color: #fff;
+
+}
+
+p{ 
+    font-size: 14px;
+    text-align: start;
+}
+/* ..............HOME.............. */
+::-webkit-scrollbar{
+    display: none;
+}
+/* ..............HOME END.............. */
+.buy-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 5px;
+    width: 150px;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(#FF5EF7,#5462C9);
+}
+
+.button{
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: #8990c9;
+    height: 40px;
+    width: 120px;
+    cursor: pointer;
+    color: #fff
+}
+
+
+  button{
+    border: none;
+  }
+
+  .delete {
+    background-color: #dc3545;
+  }
+  
+  .button.edit {
+    background-color: #28a745;
+  }
+  
+  .button.add {
+    background-color: #ffc107;
+  }
+  
+  .table-title{ 
+    color: #f0f8ff;
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: scroll;
+    border-radius: 10px;
+    border: 'rgba(255,255,255,0.1)';
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  .table td {
+    height: 10px;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+  }
+  
+  .table .selected {
+    background-color: #f0f8ff; 
+  }
+  
+  
