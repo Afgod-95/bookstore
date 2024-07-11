@@ -5,7 +5,7 @@ import { buttonsBgColor, bgColor } from "../constants/Colors";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 
-const OnLoadPage = () => {
+const Page_Not_Found = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -56,20 +56,24 @@ const OnLoadPage = () => {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ display: "flex", flexDirection: 'column', gap: "1.3rem", color: '#fff', justifyContent: 'center' }}>
-          <Typography variant="h5" align="center" sx={{fontFamily: 'Bastro', lineHeight: '40px'}} gutterBottom>Welcome to BookStore</Typography>
-          <Typography variant="body1" gutterBottom>
-            Discover your next great read with us! Our BookStore offers a vast collection of books across various genres.
-            Join our community and start exploring today.
-          </Typography>
-          
+        <div style={{ display: "flex", flexDirection: 'column', gap: "1.3rem", color: '#fff', justifyContent: 'center', alignItems: 'center' }}> 
+          <h3>404 NOT FOUND</h3>
+          <p>
+            While attempting to navigate we encountered the following error:
+            404 Not Found. The server can not find the requested resource. In the 
+            browser, this means the URL is not recognized. In an API, this can also mean
+            that the endpoint is valid but the resource itself does not exist. Servers may 
+            also send this response instead of 403 Forbidden to hide the existence of a 
+            resource from an unauthorized client. This response code is probably the most 
+            well known due to its frequent occurrence on the web.
+          </p>
           <Box mt={2} textAlign="center">
             <Button variant="contained"
-              sx={{ backgroundColor: buttonsBgColor, width: '70%', height: '50px' }}
+              sx={{ backgroundColor: buttonsBgColor, width: '100%', height: '50px' }}
               onClick={handleSubmit}
               disabled={isLoading}
             >
-              {isLoading ? <CircularProgress size={24} /> : 'Get Started'}
+              {isLoading ? <CircularProgress size={24} /> : 'Return To Login Page'}
             </Button>
           </Box>
         </div>
@@ -78,4 +82,4 @@ const OnLoadPage = () => {
   );
 };
 
-export default OnLoadPage;
+export default Page_Not_Found;

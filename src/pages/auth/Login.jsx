@@ -137,7 +137,7 @@ const Login = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <div style={{ display: "flex", flexDirection: 'column', gap: "1.3rem", justifyContent: 'center' }}>
-          <h3 style={{ alignSelf: 'center', paddingTop: '20px' }}>Login In</h3>
+          <h3 style={{ alignSelf: 'center', paddingTop: '20px' }}>Login</h3>
           
           <Avatar
             alt="Profile Picture"
@@ -186,7 +186,7 @@ const Login = () => {
 
           <Box mt={2} textAlign="center">
             <Button variant="contained"
-              sx={{ backgroundColor: buttonsBgColor, width: '70%' }}
+              sx={{ backgroundColor: buttonsBgColor, width: '70%', height: '50px' }}
               onClick={handleSubmit}
               disabled={isLoading}
             >
@@ -194,7 +194,7 @@ const Login = () => {
             </Button>
           </Box>
 
-          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', margin: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', gap: '.3rem', margin: '20px' }}>
             <p style={{color: '#fff' }}>Don't have an account? </p>
             <p style={{ color: 'orange', cursor: 'pointer' }} onClick={() => setShowRegisterModal(true)}>Click here to register</p>
           </div>

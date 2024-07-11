@@ -78,7 +78,6 @@ p{
   .table {
     width: 100%;
     border-collapse: collapse;
-    overflow: scroll;
     border-radius: 10px;
     border: 'rgba(255,255,255,0.1)';
   }

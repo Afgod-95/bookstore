@@ -73,12 +73,14 @@ const Register = ({ onclose }) => {
         return toast.error('Email already exists');
       }
       else { 
+        setIsLoading(true)
         await localStorage.setItem('users', JSON.stringify(values));
-        toast.success('User created successfully');
         const newUser = { profilePicture, name, email}
-        dispatch(setUser(newUser))
-        navigate('/dashboard', {state: { item:  newUser }})
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+          navigate('/dashboard', {state: { item:  newUser }})
+        }, 2000)
+        toast.success('Redirecting....')
       }
       
     } catch (error) {
@@ -127,7 +129,7 @@ const Register = ({ onclose }) => {
               style: { color: '#fff' },
             }}
             sx={{ color: '#fff', marginBottom: '1rem',
-              borderBottom: isFocused ? 'none' : 'thin solid #acadac',
+              borderBottom: isFocused ? 'none' : 'thin solid #acadac', 
             }}
           />
 
@@ -142,7 +144,7 @@ const Register = ({ onclose }) => {
               style: { color: '#fff' }
             }}
             sx={{ color: '#fff', marginBottom: '1rem',
-              borderBottom: isFocused ? 'none' : 'thin solid #acadac',
+              borderBottom: isFocused ? 'none' : 'thin solid #acadac', color: '#fff',
             }}
           />
          
@@ -155,7 +157,7 @@ const Register = ({ onclose }) => {
               value={values.password}
               onChange={handleChange('password')}
               sx={{ color: '#fff', marginBottom: '1rem',
-                borderBottom: isFocused ? 'none' : 'thin solid #acadac',
+                borderBottom: isFocused ? 'none' : 'thin solid #acadac', color: '#fff',
               }}
               InputLabelProps={{
                 style: { color: '#fff' },
@@ -180,7 +182,7 @@ const Register = ({ onclose }) => {
             </Button>
           </Box>
 
-          <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column', margin: '20px',}}>
+          <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column', gap: '.3rem',  margin: '20px'}}>
           <p style={{color: '#fff' }}>Don't have an account? </p>
             <p style={{color: 'orange', cursor: 'pointer'}} onClick={onclose} >Click here to sign in</p>
           </div>

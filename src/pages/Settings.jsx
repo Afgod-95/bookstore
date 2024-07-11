@@ -8,6 +8,7 @@ import { CiLogout } from "react-icons/ci";
 import { IoBookOutline } from "react-icons/io5";
 import { GoBookmarkSlash } from "react-icons/go";
 import { toast } from 'react-hot-toast'
+import UserProfileUpdate from '../components/UserProfileUpdate';
 
 
 
@@ -21,6 +22,13 @@ const Settings = () => {
     navigate(`/book-details/${id}`, { state: { item: selectedItem } });
   };
 
+  const [openProfileModal, setOpenProfileModal] = useState(false)
+  
+  const openUserProfileModal = () => {
+    setOpenProfileModal(true)
+  }
+
+  //logging out function and here once the user is logged out, set user token = null
   const logOut = async () => {
     try{
       setTimeout(() => {
@@ -35,8 +43,12 @@ const Settings = () => {
     }
   }
 
-  const profileImage = 'https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-man-wearing-glasses-is-wearing-colorful-background-image_2905240.jpg';
-  
+
+  const user = {
+    profileImage: 'https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-man-wearing-glasses-is-wearing-colorful-background-image_2905240.jpg',
+    username: 'Godwin',
+    email: 'afgod98@gmail.com',
+  }
   const Card = ({icon, title, email, username, onClick, delay }) => {
     return(
       <motion.button 
@@ -74,54 +86,63 @@ const Settings = () => {
 
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: '100%' }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-    >
+    <>
       <motion.div
-        className="middle"
-        style={{...styles.middle, }}
         initial={{ opacity: 0, x: '100%' }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.2, type: 'spring', stiffness: 100, damping: 20 }}
+        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
       >
         <motion.div
-          style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem'}}
+          className="middle"
+          style={{...styles.middle, }}
+          initial={{ opacity: 0, x: '100%' }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, type: 'spring', stiffness: 100, damping: 20 }}
         >
-          <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', paddingBottom: '15px'}}>
-            <Card 
-              delay = {1.0}
-              title={"Update Profile"} 
-              icon={ <Avatar alt="User" src={profileImage}  sx = {{height: 70, width: 70}}/>}
-              username = "Afari Godwin"
-              email = "afgod98@gmail.com"
-            />
-            
-            <Card title={"View Unread Books"} 
-              delay = {1.2}
-              icon={<GoBookmarkSlash />}
-             
-              username = "Number of unread books"
-              email = {null}
-            />
-            <Card title={"View Hidden Books"} 
-              username = "Number of hidden books"
-              icon={<IoBookOutline />}
-              delay = {1.3}
-            />
+          <motion.div
+            style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem'}}
+          >
+            <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', paddingBottom: '15px'}}>
+              <Card 
+                delay = {1.0}
+                title={"Update Profile"} 
+                icon={ <Avatar alt="User" src={user.profileImage}  sx = {{height: 70, width: 70}}/>}
+                username = {user.username}
+                email = {user.email}
+                onClick={openUserProfileModal}
+              />
+              
+              <Card title={"View Unread Books"} 
+                delay = {1.2}
+                icon={<GoBookmarkSlash />}
+              
+                username = "Number of unread books"
+                email = {null}
+              />
+              <Card title={"View Hidden Books"} 
+                username = "Number of hidden books"
+                icon={<IoBookOutline />}
+                delay = {1.3}
+              />
 
-            <Card title={"Logout"} 
-              icon={<CiLogout/>}
-              delay = {1.3}
-              onClick={() => logOut()}
-            />
-
-          </div>
+              <Card title={"Logout"} 
+                icon={<CiLogout/>}
+                delay = {1.3}
+                onClick={() => logOut()}
+              />
+            </div>
+          </motion.div>
         </motion.div>
-        
       </motion.div>
-    </motion.div>
+      {openProfileModal && 
+        <UserProfileUpdate 
+          isOpen = {openProfileModal}
+          user={user}
+          onClose={() => setOpenProfileModal(false)}
+        />
+      }
+    </>
+    
   );
 }
 

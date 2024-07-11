@@ -204,7 +204,7 @@ const TableComponent = () => {
         <AnimatePresence>
           <motion.div
             key={manage}
-            style={{ maxHeight: isMobile ? '70vh' : '50vh' }}
+            style={{ maxHeight: isMobile ? '70vh' : '50vh', overflow: 'auto' }}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -212,7 +212,7 @@ const TableComponent = () => {
           >
             {manage === 'Books' && (
               <>
-                <div className="button-group" style={{ display: 'flex', justifyContent: 'flex-end', alignContent: 'center', gap: '1rem', marginBottom: '20px', position: 'sticky' }}>
+                <div className="button-group" style={{ display: 'flex', justifyContent: 'flex-end', alignContent: 'center', gap: '1rem', marginBottom: '20px',}}>
                   <motion.button
                     initial={{ opacity: 0, x: '100%' }}
                     animate={{ opacity: 1, x: 0 }}
@@ -250,7 +250,7 @@ const TableComponent = () => {
                   transition={{ duration: 0.3 }}
                 
                 >
-                  <div style={{overflowX: 'scroll'}}>
+                
                     <thead>
                       <tr >
                         <th>
@@ -270,9 +270,9 @@ const TableComponent = () => {
                         <th>Price</th>
                       </tr>
                     </thead>
-                  </div>
-                  <div style={{overflowY: 'scroll', maxHeight: isMobile ? '70vh' : '50vh' }}>
-                    <tbody style={{overflow: 'auto'}}>
+                  
+                 
+                    <tbody >
                       {filteredBooks.map(item => (
                         <tr key={item.id} className={item.selected ? 'selected' : ''}>
                           <td>
@@ -294,14 +294,14 @@ const TableComponent = () => {
                       ))}
                     </tbody>
 
-                  </div>
+                
                  
                 </motion.table>
               </>
             )}
             {manage === 'Users' && (
               <>
-                <div className="button-group" style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end', alignContent: 'center', gap: '1rem' }}>
+                <div className="button-group" style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end', alignContent: 'center', gap: '1rem',  }}>
                   <motion.button
                     initial={{ opacity: 0, x: '100%' }}
                     animate={{ opacity: 1, x: 0 }}
@@ -338,45 +338,44 @@ const TableComponent = () => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div style={{overflowX: 'scroll'}}>
-                    <thead>
-                      <tr>
-                        <th>
+                  
+                  <thead>
+                    <tr>
+                      <th>
+                        <input
+                          type="checkbox"
+                          checked={selectAll}
+                          onChange={toggleUserSelectAll}
+                        />
+                      </th>
+                      <th>User ID</th>
+                      <th>Profile</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Password</th>
+                    </tr>
+                  </thead>
+                
+                
+                  <tbody>
+                    {filteredUsers.map(item => (
+                      <tr key={item.id} className={item.selected ? 'selected' : ''}>
+                        <td>
                           <input
                             type="checkbox"
-                            checked={selectAll}
-                            onChange={toggleUserSelectAll}
+                            checked={item.selected}
+                            onChange={() => toggleSelect(item.id, 'Users')}
                           />
-                        </th>
-                        <th>User ID</th>
-                        <th>Profile</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Password</th>
+                        </td>
+                        <td>{item.id}</td>
+                        <td><img src={item.profile} alt="" /></td>
+                        <td>{item.Username}</td>
+                        <td>{item.Email}</td>
+                        <td>{item.Password}</td>
                       </tr>
-                    </thead>
-                  </div>
-
-                  <div style={{overflowY: 'scroll', maxHeight: isMobile ? '70vh' : '50vh' }}>
-                    <tbody>
-                      {filteredUsers.map(item => (
-                        <tr key={item.id} className={item.selected ? 'selected' : ''}>
-                          <td>
-                            <input
-                              type="checkbox"
-                              checked={item.selected}
-                              onChange={() => toggleSelect(item.id, 'Users')}
-                            />
-                          </td>
-                          <td>{item.id}</td>
-                          <td><img src={item.profile} alt="" /></td>
-                          <td>{item.Username}</td>
-                          <td>{item.Email}</td>
-                          <td>{item.Password}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </div>
+                    ))}
+                  </tbody>
+                 
                 </motion.table>
               </>
             )}

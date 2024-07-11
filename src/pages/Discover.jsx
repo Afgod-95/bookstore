@@ -68,6 +68,8 @@ const Discover = () => {
         <div style={{width: isMobile ? '90%' : '70%', margin: isMobile ? '8% auto': '3% auto', alignSelf: 'flex-start'}}>
           <SearchBar search={search} setSearch={searchBooks} placeholder={searchPlaceHolder} />
         </div>
+        
+       
         <div style={{overflowY: 'scroll', height: '90vh'}} >
             <div 
               style={{
@@ -100,12 +102,14 @@ const Discover = () => {
               ) : (
                 <motion.div>
                     <motion.div
-                      style={{width: '100%'}}
+                      style={{width: '100%', flex: 1}}
                       initial={{ opacity: 0, x: '-100%' }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 1.0, type: 'spring', stiffness: 100, damping: 20 }}
                     >
-                      
+                      <div>
+                        <h3 style={{textAlign: 'start', fontSize: '20px', marginBottom: '10px'}}>Browse All</h3>
+                      </div>
                       <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', paddingBottom: '15px'}}>
                         <BooksCategoryContainer />
                         <BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer /><BooksCategoryContainer />

@@ -94,60 +94,69 @@ const BooksCart = () => {
             </motion.div>
             <div style={{ display: "flex", flexDirection: 'column', gap: "1rem", justifyContent: 'center' }}>
                 <h3 style={{ alignSelf: 'center', paddingTop: '20px' }}>Books In Cart</h3>
-                <p style={{color: '#fff'}}>{books.length === 0 ? 'There Is No Book Added To Cart' : `Total Number Of Bokks Added To Cart: ${books.length}`}</p>
+                <p style={{color: '#fff'}}>{books.length === 0 ? null : `Total Number Of Bokks Added To Cart: ${books.length}`}</p>
 
                 <div style={styles.line}></div>
                 <div style={{overflowY: 'scroll', height: books.length === 0 ? null : '45vh'}}>
-                    {books.map((book, index) => (
-                    <>
-                        <motion.div key={index}
-                            
-                            style={{
-                                marginBlock: '10px', 
-                                display: 'flex', 
-                                flexDirection: isMobile ? 'column' : 'row', 
-                                justifyContent: 'space-between', 
-                                alignItems: isMobile ? 'flex-start' : 'center'
-                            }}
-                        >
-                            <div style={{ display: 'flex', gap: '1rem'}} >
-                                <div style={styles.imageContainer}>
-                                    <img src={book.image} alt={book.title} style={styles.image} />
+                    {books.length === 0 ? (
+                        <p>Your Cart Is Empty</p>
+                    ) : (
+                     <>
+                        {books.map((book, index) => (
+                        <>
+                            <motion.div key={index}
+                                
+                                style={{
+                                    marginBlock: '10px', 
+                                    display: 'flex', 
+                                    flexDirection: isMobile ? 'column' : 'row', 
+                                    justifyContent: 'space-between', 
+                                    alignItems: isMobile ? 'flex-start' : 'center'
+                                }}
+                            >
+                                <div style={{ display: 'flex', gap: '1rem'}} >
+                                    <div style={styles.imageContainer}>
+                                        <img src={book.image} alt={book.title} style={styles.image} />
+                                    </div>
+                                    <div style={styles.bookNameContainer}>
+                                        <h4 style={styles.bookName}>{book.title}</h4>
+                                        <p style={styles.bookPrice}>{book.price}</p>
+                                    </div>
                                 </div>
-                                <div style={styles.bookNameContainer}>
-                                    <h4 style={styles.bookName}>{book.title}</h4>
-                                    <p style={styles.bookPrice}>{book.price}</p>
+                                <div style={{...styles.quantityContainer, marginTop: '10px'}}>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                                        <button
+                                            style={{ ...styles.quantity, backgroundColor: buttonsBgColor }}
+                                            onClick={() => handleUpdateQuantity(book.id, book.quantity ? 1 : -1)}
+                                        >
+                                            -
+                                        </button>
+                                        <span>{book.quantity}</span>
+                                        <button
+                                            style={{ ...styles.quantity, backgroundColor: buttonsBgColor }}
+                                            onClick={() => handleUpdateQuantity(book.id, book.quantity + 1)}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                    <button onClick={() => deleteBookById(book.id, book.title)}
+                                        style={{ ...styles.quantity, backgroundColor: 'red', color: '#fff' }}
+                                    >   
+                                        <DeleteOutline />
+                                    </button>  
                                 </div>
-                            </div>
-                            <div style={{...styles.quantityContainer, marginTop: '10px'}}>
-                               <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
-                                    <button
-                                        style={{ ...styles.quantity, backgroundColor: buttonsBgColor }}
-                                        onClick={() => handleUpdateQuantity(book.id, book.quantity ? 1 : -1)}
-                                    >
-                                        -
-                                    </button>
-                                    <span>{book.quantity}</span>
-                                    <button
-                                        style={{ ...styles.quantity, backgroundColor: buttonsBgColor }}
-                                        onClick={() => handleUpdateQuantity(book.id, book.quantity + 1)}
-                                    >
-                                        +
-                                    </button>
-                               </div>
-                                <button onClick={() => deleteBookById(book.id, book.title)}
-                                    style={{ ...styles.quantity, backgroundColor: 'red', color: '#fff' }}
-                                >   
-                                    <DeleteOutline />
-                                </button>  
-                            </div>
-                        </motion.div>
-                        <div style={styles.line}></div>
-                    </>
+                            </motion.div>
+                            <div style={styles.line}></div>
+                        </>
+                        
+                        ))}
+                     
+                     </>   
                     
-                    ))}
+                    )}
+                    
                 </div>
-                <div>
+                <div style={{ display:books.length === 0 ? 'none' : 'flex'}}>
                     <p>Total Price: {total}</p>
                 </div>
                 <div style={{ display: 'flex', width: '100%', gap: '10px' }}>

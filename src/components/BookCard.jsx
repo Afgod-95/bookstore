@@ -12,7 +12,7 @@ const BookCard = ({ image,  price, title, author, onClick, rating }) => {
         </div>
         <div className="details" style={styles.detail}>
             <div className="book" style={styles.book}>
-                <div>
+                <div style={{marginBlock: '5px'}}>
                     <p style = {{color: '#fff', fontSize: '15px', textAlign: 'left'}}>{title}</p>
                     <p style = {{color: '#acadac', fontSize: '13px', textAlign: 'left'}}>By | {author}</p>
                     <BookRating rating = {rating} />
